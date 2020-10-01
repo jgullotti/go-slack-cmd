@@ -31,14 +31,14 @@ func main() {
 
 	api := slack.New(slackToken)
 
-	channelID, timestamp, err := api.PostMessage(
+	_, timestamp, err := api.PostMessage(
 		slackRecipient,
 		slack.MsgOptionText(message, false),
 	)
 
 	if err != nil {
-		fmt.Printf("%s\n", err)
+		log.Fatalf("%s\n", err)
 	}
 
-	fmt.Printf("Sent message to %s at %s\n", channelID, timestamp)
+	fmt.Printf("Sent message to %s at %s\n", slackRecipient, timestamp)
 }
